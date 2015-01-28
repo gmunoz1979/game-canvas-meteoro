@@ -21,6 +21,9 @@ Tank = Class(
       this.x = MAXWIDTH / 2;
       this.y = MAXHEIGHT;
       this.prevAngle = this.angle;
+      
+      this.arc = new Path2D();
+      this.arc.arc(this.x, this.y, this.radius, 0, Math.PI, true);
     },
 
     getXY: function(angle, radius) {
@@ -33,34 +36,31 @@ Tank = Class(
     },
 
     clear: function() {
-      this.ctx.save();
-      this.ctx.strokeStyle = '#000000';
-      this.ctx.lineWidth = 1;
-      this.ctx.beginPath();
-      this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI, true);
-      this.ctx.stroke();
+      // this.ctx.save();
+      // this.ctx.strokeStyle = '#000000';
+      // this.ctx.lineWidth = 1;
+      // this.ctx.beginPath();
+      // this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI, true);
+      // this.ctx.stroke();
 
-      var xy1 = this.getXY(this.angle, this.radius),
-          xy2 = this.getXY(this.angle, this.radius + this.width+1);
+      // var xy1 = this.getXY(this.angle, this.radius),
+      //     xy2 = this.getXY(this.angle, this.radius + this.width+1);
       
-      this.ctx.lineWidth = 3;
-      this.ctx.beginPath();
-      this.ctx.moveTo(xy1.x, xy1.y);
-      this.ctx.lineTo(xy2.x, xy2.y);
-      this.ctx.stroke();
-      this.ctx.restore();
+      // this.ctx.lineWidth = 3;
+      // this.ctx.beginPath();
+      // this.ctx.moveTo(xy1.x, xy1.y);
+      // this.ctx.lineTo(xy2.x, xy2.y);
+      // this.ctx.stroke();
+      // this.ctx.restore();
     },
 
     draw: function() {
-      this.ctx.save();
       this.ctx.strokeStyle = this.color;
       this.ctx.lineWidth = 0.5;
-      this.ctx.beginPath();
-      this.ctx.arc(this.x, this.y, this.radius, 0, Math.PI, true);
-      this.ctx.stroke();
+      this.ctx.stroke(this.arc);
 
-      var xy1 = this.getXY(this.angle, this.radius),
-          xy2 = this.getXY(this.angle, this.radius+this.width);
+      var xy1 = this.getXY(this.angle, this.radius);
+      var xy2 = this.getXY(this.angle, this.radius+this.width);
       
       this.ctx.lineWidth = 1;
       this.ctx.beginPath();
@@ -138,7 +138,7 @@ Tank = Class(
     },
 
     update: function() {
-      this.clear();
+      //this.clear();
       this.isMove && this.move();
       this.isFire && this.fire();
       this.angle = this.prevAngle;

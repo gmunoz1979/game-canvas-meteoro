@@ -85,7 +85,7 @@ Misil = Class(
     },
 
     update: function() {
-      this.clear();
+      //this.clear();
 
       if (this.isCollition()) {
         this.remove();

@@ -23,23 +23,27 @@ Meteoro = Class(
     },
 
     clear: function() {
-      this.ctx.clearRect(this.x, this.y, this.width, this.height);
+      //this.ctx.clearRect(this.x, this.y, this.width, this.height);
     },
 
     drawLine: function() {
       this.ctx.fillStyle = this.color;
-      this.ctx.fillRect(this.x, this.y, this.width, this.height);
+      var line = new Path2D();
+      line.rect(this.x, this.y, this.width, this.height);
+      this.ctx.fill(line);
     },
 
     clearExplosion: function(height) {
-      this.ctx.clearRect(this.x - this.radius - 1, height - this.radius - 1, this.radius * 2 + 2, this.radius * 2 + 2);
+      //this.ctx.clearRect(this.x - this.radius - 1, height - this.radius - 1, this.radius * 2 + 2, this.radius * 2 + 2);
     },
 
     drawExplosion: function(height) {
+      var explosion = new Path2D();
+
       this.ctx.fillStyle = this.color;
-      this.ctx.beginPath();
-      this.ctx.arc(this.x, height, this.radius, 0, Math.PI*2, true);
-      this.ctx.fill();
+      explosion.arc(this.x, height, this.radius, 0, Math.PI*2, true);
+
+      this.ctx.fill(explosion);
     },
 
     exploit: function(h) {
